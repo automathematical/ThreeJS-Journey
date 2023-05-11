@@ -96,6 +96,7 @@ const generateGalaxy = () => {
 
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute("aScale", new THREE.BufferAttribute(colors, 1));
 
   /**
    * Material
@@ -104,9 +105,11 @@ const generateGalaxy = () => {
     depthWrite: false,
     blending: THREE.AdditiveBlending,
     vertexColors: true,
+    transparent: true,
     vertexShader: galaxyVertexShader,
     fragmentShader: galaxyFragmentShader,
     uniforms: {
+      uTime: { value: 0 },
       uSize: { value: 8 * renderer.getPixelRatio() },
     },
   });
@@ -213,6 +216,9 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // Update material
+  material.uniforms.uTime.value = elapsedTime;
 
   // Update controls
   controls.update();
