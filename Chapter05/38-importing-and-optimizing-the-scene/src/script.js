@@ -45,9 +45,7 @@ bakedTexture.encoding = THREE.sRGBEncoding;
 // baked material
 const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture });
 // Portal light material
-const portalLightMaterial = new THREE.MeshBasicMaterial({
-  color: 0xffffff,
-});
+const portalLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 // Pole light material
 const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
 
