@@ -44,6 +44,9 @@ const bakedTexture = textureLoader.load("baked.jpg");
 bakedTexture.flipY = false;
 bakedTexture.encoding = THREE.sRGBEncoding;
 
+debugObject.portalColorStart = "#000000";
+debugObject.portalColorEnd = "#ffffff";
+
 /**
  * Materials
  */
@@ -55,8 +58,22 @@ const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
 
 // Portal light material
 const portalLightMaterial = new THREE.ShaderMaterial({
+  uniforms: {
+    uTime: { value: 0 },
+    uColorStart: { value: new THREE.Color(0x000000) },
+    uColorEnd: { value: new THREE.Color(0xffffff) },
+  },
   vertexShader: portalVertexShader,
   fragmentShader: portalFragmentShader,
+});
+
+gui.addColor(debugObject, "portalColorStart").onChange(() => {
+  portalLightMaterial.uniforms.uColorStart.value.set(
+    debugObject.portalColorStart
+  );
+});
+gui.addColor(debugObject, "portalColorEnd").onChange(() => {
+  portalLightMaterial.uniforms.uColorEnd.value.set(debugObject.portalColorEnd);
 });
 
 /**
@@ -208,6 +225,7 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Update uTime
+  portalLightMaterial.uniforms.uTime.value = elapsedTime;
   fireFliesMaterial.uniforms.uTime.value = elapsedTime;
 
   // Update controls
