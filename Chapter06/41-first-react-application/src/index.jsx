@@ -7,8 +7,8 @@ const toto = 'tata'
 
 root.render(
   <>
-    <h1 className="title">Hello {Date.now()}</h1>
-    <p>
+    <h1 className="title">Hello {toto}</h1>
+    <p className="cute-paragraph">
       Lorem <strong>ipsum</strong> dolor sit amet consectetur adipisicing elit.
       Iure id commodi doloribus magni sequi! <br /> Exercitationem, consequatur
       ipsam eveniet ipsum perferendis, esse libero ex quod repellendus itaque
