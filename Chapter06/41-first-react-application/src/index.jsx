@@ -1,18 +1,14 @@
-import './style.css'
+import App from './App.jsx'
 import { createRoot } from 'react-dom/client'
+
+import './style.css'
 
 const root = createRoot(document.querySelector('#root'))
 
 const toto = 'tata'
 
 root.render(
-  <>
-    <h1 className="title">Hello {toto}</h1>
-    <p className="cute-paragraph">
-      Lorem <strong>ipsum</strong> dolor sit amet consectetur adipisicing elit.
-      Iure id commodi doloribus magni sequi! <br /> Exercitationem, consequatur
-      ipsam eveniet ipsum perferendis, esse libero ex quod repellendus itaque
-      optio debitis ratione beatae?
-    </p>
-  </>
+  <div>
+    <App />
+  </div>
 )
