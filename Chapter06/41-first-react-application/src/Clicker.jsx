@@ -4,9 +4,10 @@ export default function Clicker({ increment, keyName, color }) {
   const [count, setCount] = useState(parseInt(localStorage.getItem(keyName) ?? 0))
   const buttonRef = useRef()
 
-  console.log(buttonRef)
-
   useEffect(() => {
+    buttonRef.current.style.backgroundColor = 'papayawhip'
+    buttonRef.current.style.color = 'salmon'
+
     return () => {
       localStorage.removeItem(keyName)
     }
