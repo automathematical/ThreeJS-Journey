@@ -9,7 +9,7 @@ const toto = 'tata'
 
 root.render(
   <div>
-    <App clickersCount={4}>
+    <App clickersCount={3}>
       <h1>My first react app</h1>
       <h2>a fancy subtile</h2>
     </App>
