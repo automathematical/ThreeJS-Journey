@@ -4,6 +4,7 @@ import Model from './Model.jsx'
 import Placeholder from './Placeholder.jsx'
 import { Suspense } from 'react'
 import Hamburger from './Hamburger.jsx'
+import Fox from './Fox.jsx'
 
 export default function Experience() {
   return (
@@ -29,15 +30,13 @@ export default function Experience() {
         <meshStandardMaterial color="greenyellow" />
       </mesh>
 
-      <Suspense
-        fallback={
-          <Placeholder
-            position-y={0.5}
-            scale={[2, 3, 2]}
-          />
-        }>
-        <Hamburger scale={0.35} />
+      <Suspense>
+        <Hamburger
+          position={(2.5, -2, 2.5)}
+          scale={0.5}
+        />
       </Suspense>
+      <Fox />
     </>
   )
 }
