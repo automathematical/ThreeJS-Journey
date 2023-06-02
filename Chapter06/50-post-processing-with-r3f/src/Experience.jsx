@@ -1,18 +1,50 @@
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
-import { EffectComposer, Vignette } from '@react-three/postprocessing'
+import { DepthOfField, Bloom, Noise, EffectComposer, Glitch, Vignette } from '@react-three/postprocessing'
+import { GlitchMode, BlendFunction } from 'postprocessing'
+import Drunk from './Drunk.jsx'
+import { useControls } from 'leva'
 
 export default function Experience() {
+  const drunkProps = useControls('Drunk Effect', {
+    frequency: { value: 2, min: 1, max: 20 },
+    amplitude: { value: 0.1, min: 0, max: 1 },
+  })
   return (
     <>
+      <color
+        args={['#ffffff']}
+        attach={'background'}
+      />
       <EffectComposer multisampling={8}>
-        <Vignette
+        {/* <Vignette
           offset={0.3}
           darkness={0.9}
+          blendFunction={BlendFunction.NORMAL}
+        /> */}
+        {/* <Glitch
+          delay={[0.5, 1]}
+          duration={[0.1, 0.3]}
+          strength={[0.02, 0.04]}
+          mode={GlitchMode.CONSTANT_WILD}
+        /> */}
+        {/* <Noise
+          premultiply
+          blendFunction={BlendFunction.AVERAGE}
+        /> */}
+        {/* <Bloom
+          mipmapBlur
+          intensity={0.1}
+          luminanceThreshold={0}
+        /> */}
+        {/* <DepthOfField /> */}
+        <Drunk
+          {...drunkProps}
+          blendFunction={BlendFunction.DARKEN}
         />
       </EffectComposer>
 
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
 
       <OrbitControls makeDefault />
 
@@ -35,7 +67,10 @@ export default function Experience() {
         position-x={2}
         scale={1.5}>
         <boxGeometry />
-        <meshStandardMaterial color="mediumpurple" />
+        <meshStandardMaterial
+          color="purple"
+          toneMapped={false}
+        />
       </mesh>
 
       <mesh
